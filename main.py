@@ -8,15 +8,8 @@ from pandas import DataFrame
 import numpy as np
 import uvicorn
 from pydantic import BaseModel
-from fastapi.templating import Jinja2Templates
-from pathlib import Path
 from src.utils import load_artifact, process_data, get_cat_features
 from src.model import inference
-
-
-# Define templates directory
-BASE_DIR = Path(__file__).resolve().parent
-templates = Jinja2Templates(directory=str(Path(BASE_DIR, 'templates')))
 
 
 # Create app
