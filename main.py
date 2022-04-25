@@ -1,7 +1,7 @@
 """
 This module contains the code for the API
 """
-
+import os
 from fastapi import FastAPI
 from typing import Literal
 from pandas import DataFrame
@@ -10,6 +10,14 @@ import uvicorn
 from pydantic import BaseModel
 from src.utils import load_artifact, process_data, get_cat_features
 from src.model import inference
+
+# Set up DVC on Heroku
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
+
 
 
 # Create app
