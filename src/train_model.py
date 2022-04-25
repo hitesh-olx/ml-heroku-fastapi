@@ -26,7 +26,7 @@ X_train, y_train, encoder, lb = process_data(
 )
 
 X_test, y_test, _, _ = process_data(
-    test, categorical_features=cat_features, label="salary",
+    test, categorical_features=get_cat_features(), label="salary",
      training=False, encoder=encoder, lb=lb)
 
 
